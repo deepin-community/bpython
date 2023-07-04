@@ -1,0 +1,593 @@
+.\" Man page generated from reStructuredText.
+.
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.TH "BPYTHON-CONFIG" "5" "Jan 18, 2023" " "0.24"" "bpython"
+.SH NAME
+bpython-config \- user configuration file for bpython
+.SH SYNOPSIS
+.sp
+\fB$XDG_CONFIG_HOME/bpython/config\fP
+.SH DESCRIPTION
+.sp
+The configuration file contains various options controlling the behaviour of
+\fBbpython\fP\&.
+.SH GENERAL
+.sp
+This refers to the \fB[general]\fP section in your
+\fI$XDG_CONFIG_HOME/bpython/config\fP file.
+.SS arg_spec
+.sp
+Display the arg spec (list of arguments) for callables, when possible (default:
+True).
+.SS auto_display_list
+.sp
+Display the autocomplete list as you type (default: True).
+When this is off, you can hit tab to see the suggestions.
+.SS autocomplete_mode
+.sp
+There are four modes for autocomplete: \fBnone\fP, \fBsimple\fP, \fBsubstring\fP, and
+\fBfuzzy\fP\&. Simple matches methods with a common prefix, substring matches
+methods with a common subsequence, and fuzzy matches methods with common
+characters (default: simple). None disables autocompletion.
+.sp
+New in version 0.12.
+
+.SS brackets_completion
+.sp
+Whether opening character of the pairs \fB()\fP, \fB[]\fP, \fB\(dq\(dq\fP, and \fB\(aq\(aq\fP should be auto\-closed
+(default: False).
+.sp
+New in version 0.23.
+
+.SS color_scheme
+.sp
+See \fI\%Themes\fP for more information.
+.sp
+Color schemes should be put in \fB$XDG_CONFIG_HOME/bpython/\fP\&. For example, to
+use the theme \fB$XDG_CONFIG_HOME/bpython/foo.theme\fP set \fBcolor_scheme = foo\fP
+.sp
+Leave blank or set to \(dqdefault\(dq to use the default (builtin) theme.
+.SS complete_magic_methods
+.sp
+Whether magic methods should be auto completed (default: True).
+.SS dedent_after
+.sp
+Number of blank lines required before next line will be dedented (default: 1).
+If set to 0, automatic dedenting never occurs.
+.SS editor
+.sp
+Editor for externally editing the current line, session, or config file.
+.sp
+New in version 0.13.
+
+.SS flush_output
+.sp
+Whether to flush all output to stdout on exit (default: True).
+.sp
+Only relevant to bpython\-curses and bpython\-urwid.
+.SS highlight_show_source
+.sp
+Whether the source code of an object should be syntax highlighted (default: True).
+.SS hist_duplicates
+.sp
+Whether to store duplicate entries in the history (default: True).
+.SS hist_file
+.sp
+History file (default: \fB~/.pythonhist\fP).
+.SS hist_length
+.sp
+Number of lines to store in history (set to 0 to disable) (default: 100).
+.SS paste_time
+.sp
+The time between keypresses before pastemode is deactivated in bpython\-curses (default: 0.02).
+.SS pastebin_confirm
+.sp
+Whether pasting to a pastebin needs to be confirmed before sending the data
+(default: True).
+.SS pastebin_expiry
+.sp
+Time duration after which a paste should expire. Valid values are \fB1day\fP,
+\fB1week\fP and \fB1month\fP (default: \fB1week\fP).
+.sp
+New in version 0.14.
+
+.SS pastebin_helper
+.sp
+The name of a helper executable that should perform pastebin upload on bpython\(aqs
+behalf. If set, this overrides \fIpastebin_url\fP\&. The helper is expected to return
+the full URL to the pastebin as the first word of its output. The data is
+supplied to the helper via STDIN.
+.sp
+An example helper program is \fBpastebinit\fP, available for most systems. The
+following helper program can be used to create \fI\%gists\fP:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+#!/usr/bin/env python
+
+import sys
+import requests
+import json
+
+def do_gist_json(s):
+    \(dq\(dq\(dq Use json to post to github. \(dq\(dq\(dq
+    gist_public = False
+    gist_url = \(dqhttps://api.github.com/gists\(dq
+
+    data = {
+        \(dqdescription\(dq: \(dqGist from bpython\(dq,
+        \(dqpublic\(dq: gist_public,
+        \(dqfiles\(dq: {
+            \(dqsample\(dq: {
+                \(dqcontent\(dq: s
+            },
+        },
+    }
+
+    headers = {
+        \(dqContent\-Type\(dq: \(dqapplication/json\(dq,
+        \(dqX\-Github\-Username\(dq: \(dqYOUR_USERNAME\(dq,
+        \(dqAuthorization\(dq: \(dqtoken YOUR_TOKEN\(dq,
+    }
+
+    try:
+        res = requests.post(gist_url, data=json.dumps(payload), headers=headers)
+        res.raise_for_status()
+        json_res = json.loads(res.read())
+        return json_res[\(dqhtml_url\(dq]
+    except requests.exceptions.HTTPError as err:
+        return err
+
+
+if __name__ == \(dq__main__\(dq:
+  s = sys.stdin.read()
+  print(do_gist_json(s))
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+New in version 0.12.
+
+.SS pastebin_url
+.sp
+The pastebin url to post to (without a trailing slash). This pastebin has to be
+a pastebin which provides a similar interface to \fBbpaste.net\fP\(aqs JSON
+interface (default: \fI\%https://bpaste.net\fP).
+.SS save_append_py
+.sp
+Whether to append \fB\&.py\fP to the filename while saving the input to a file.
+.sp
+New in version 0.13.
+
+.SS single_undo_time
+.sp
+Time duration an undo must be predicted to take before prompting
+to undo multiple lines at once. Use \-1 to never prompt, or 0 to always prompt.
+(default: 1.0)
+.sp
+New in version 0.14.
+
+.SS syntax
+.sp
+Syntax highlighting as you type (default: True).
+.SS tab_length
+.sp
+Soft tab size (default 4, see PEP\-8).
+.SS unicode_box
+.sp
+Whether to use Unicode characters to draw boxes (default: True).
+.sp
+New in version 0.14.
+
+.SS import_completion_skiplist
+.sp
+A \fI:\fP\-seperated list of patterns to skip when processing modules for import completion.
+.sp
+New in version 0.21.
+
+.SH KEYBOARD
+.sp
+This section refers to the \fB[keyboard]\fP section in your
+\fB$XDG_CONFIG_HOME/bpython/config\fP\&.
+.sp
+You can set various keyboard shortcuts to be used by bpython. However, we have
+yet to map all keys to their respective control codes. If you configure a key
+combination which is not yet supported by bpython it will raise an exception
+telling you the key does not exist in bpython.keys.
+.sp
+Valid keys are:
+.INDENT 0.0
+.IP \(bu 2
+Control + any alphanumeric character (C\-a through C\-z, also a few others).
+.IP \(bu 2
+Any function key ranging from F1 to F12.
+.UNINDENT
+.SS backspace
+.sp
+Default: C\-h
+.sp
+Delete character in front of the cursor.
+.sp
+New in version 0.14.
+
+.SS beginning_of_line
+.sp
+Default: C\-a
+.sp
+Move to the beginning of the line.
+.sp
+New in version 0.14.
+
+.SS clear_line
+.sp
+Default: C\-u
+.sp
+Clears to the beginning of the line.
+.SS clear_screen
+.sp
+Default: C\-l
+.sp
+Clears the screen to the top.
+.SS clear_word
+.sp
+Default: C\-w
+.sp
+Clear the word the cursor is currently on.
+.SS copy_clipboard
+.sp
+Default: F10
+.sp
+Copy the entire session to clipboard.
+.sp
+New in version 0.14.
+
+.SS cut_to_buffer
+.sp
+Default: C\-k
+.sp
+Cuts the current line to the buffer.
+.SS delete
+.sp
+Default: C\-d
+.sp
+Delete character under the cursor.
+.SS down_one_line
+.sp
+Default: C\-n
+.sp
+Move the cursor down, by one line.
+.SS edit_config
+.sp
+Default: F3
+.sp
+Edit bpython configuration in external editor.
+.sp
+New in version 0.14.
+
+.SS edit_current_block
+.sp
+Default: C\-x
+.sp
+Edit current block in external editor.
+.sp
+New in version 0.14.
+
+.SS end_of_line
+.sp
+Default: C\-e
+.sp
+Move to the of the line.
+.sp
+New in version 0.14.
+
+.SS exit
+.sp
+Default: C\-d
+.sp
+Exits bpython (use on empty line)
+.SS external_editor
+.sp
+Default: F7
+.sp
+Edit the entire session in an external editor.
+.sp
+New in version 0.13.
+
+.SS help
+.sp
+Default: F1
+.sp
+Brings up sincerely cheerful description of bpython features and current key bindings.
+.sp
+New in version 0.14.
+
+.SS incremental_search
+.sp
+Default: M\-s
+.sp
+Perform incremental search on all stored lines in the history.
+.sp
+New in version 0.15.
+
+.SS last_output
+.sp
+Default: F9
+.sp
+Shows the last output in the systems $PAGER. Only works in bpython\-curses.
+.SS left
+.sp
+Default: C\-b
+.sp
+Move a character to the left.
+.sp
+New in version 0.14.
+
+.SS pastebin
+.sp
+Default: F8
+.SS reimport
+.sp
+Default: F6
+.sp
+Reruns entire session, reloading all modules by clearing the sys.modules cache.
+.sp
+New in version 0.14.
+
+.SS reverse_incremental_search
+.sp
+Default: M\-r
+.sp
+Perform reverse incremental search on all stored lines in the history.
+.sp
+New in version 0.15.
+
+.SS right
+.sp
+Default: C\-f
+.sp
+Move a character to the right.
+.sp
+New in version 0.14.
+
+.SS save
+.sp
+Default: C\-s
+.sp
+Saves the current session to a file (prompts for filename)
+.SS search
+.sp
+Default: C\-o
+.sp
+Search up for any lines containing what is on the current line.
+.SS show_source
+.sp
+Default: F2
+.sp
+Shows the source of the currently being completed (python) function.
+.SS toggle_file_watch
+.sp
+Default: F5
+.sp
+Toggles file watching behaviour; re\-runs entire bpython session whenever an imported
+module is modified.
+.sp
+New in version 0.14.
+
+.SS transpose_chars
+.sp
+Default: C\-t
+.sp
+Transpose current character with the one left of it.
+.sp
+New in version 0.14.
+
+.SS undo
+.sp
+Default: C\-r
+.sp
+Rewinds the last action.
+.SS up_one_line
+.sp
+Default: C\-p
+.sp
+Move the cursor up, by one line.
+.SS yank_from_buffer
+.sp
+Default: C\-y
+.sp
+Pastes the current line from the buffer (the one you previously cut)
+.SH CLI
+.sp
+This refers to the \fB[cli]\fP section in your config file.
+.SS suggestion_width
+.sp
+Default: 0.8
+.sp
+The width of the suggestion window in percent of the terminal width.
+.sp
+New in version 0.9.8.
+
+.SS trim_prompts
+.sp
+Default: False
+.sp
+Trims lines starting with \(aq>>> \(aq when set to True.
+.SH CURTSIES
+.sp
+This refers to the \fB[curtsies]\fP section in your config file.
+.sp
+New in version 0.13.
+
+.SS list_above
+.sp
+Default: False
+.sp
+When there is space above the current line, whether the suggestions list will be
+displayed there instead of below the current line.
+.SS right_arrow_completion
+.sp
+Default: True
+.sp
+Full line suggestion and completion (like fish shell and many web browsers).
+.sp
+Full line completions are displayed under the cursor in gray.
+When the cursor is at the end of a line, pressing right arrow or ctrl\-f will
+complete the full line.
+This option also turns on substring history search, highlighting the matching
+section in previous result.
+.SH SAMPLE CONFIG
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+# This is a standard Python config file.
+# Valid values can be True, False, integer numbers, and strings.
+# Lines starting with # are treated as comments.
+#
+# By default bpython will look for $XDG_CONFIG_HOME/bpython/config
+# ($XDG_CONFIG_HOME defaults to ~/.config) or you can specify a file with the
+# \-\-config option on the command line.
+#
+# See http://docs.bpython\-interpreter.org/configuration.html for all
+# configurable options.
+
+# General section tag
+[general]
+
+# Display the autocomplete list as you type (default: True).
+# When this is off, you can hit tab to see the suggestions.
+# auto_display_list = True
+
+# Syntax highlighting as you type (default: True).
+# syntax = True
+
+# Display the arg spec (list of arguments) for callables,
+# when possible (default: True).
+# arg_spec = True
+
+# History file (default: ~/.pythonhist):
+# hist_file = ~/.pythonhist
+
+# Number of lines to store in history (set to 0 to disable) (default: 100):
+# hist_length = 100
+
+# Soft tab size (default: 4, see pep\-8):
+# tab_length = 4
+
+# Color schemes should be put in $XDG_CONFIG_HOME/bpython/ e.g. to use the theme
+# $XDG_CONFIG_HOME/bpython/foo.theme set color_scheme = foo. Leave blank or set
+# to \(dqdefault\(dq to use the default theme
+# color_scheme = default
+
+# External editor to use for editing the current line, block, or full history
+# Examples: vi (vim)
+#          code \-\-wait (VS Code) \- in VS Code use the command palette to:
+#                Shell Command: Install \(aqcode\(aq command in PATH
+#          atom \-nw (Atom)
+# Default is to try $EDITOR and $VISUAL, then vi \- but if you uncomment
+# the line below that will take precedence
+# editor = vi
+
+# Whether to append .py to the filename while saving session to a file.
+# (default: False)
+# save_append_py = False
+
+# The name of a helper executable that should perform pastebin upload on
+# bpython\(aqs behalf. If unset, bpython uploads pastes to bpaste.net. (default: )
+#pastebin_helper = gist.py
+
+# How long an undo must be expected to take before prompting for how
+# many lines should be undone. Set to \-1 to never prompt, or 0 to
+# always prompt.
+# single_undo_time = 1.0
+
+# Enable autoreload feature by default (default: False).
+# default_autoreload = False
+# Enable autocompletion of brackets and quotes (default: False)
+# brackets_completion = False
+
+[keyboard]
+
+# All key bindings are shown commented out with their default binding
+
+# pastebin = F8
+# last_output = F9
+# reimport = F6
+# help = F1
+# toggle_file_watch = F5
+# save = C\-s
+# undo = C\-r
+# redo = C\-g
+# up_one_line = C\-p
+# down_one_line = C\-n
+# cut_to_buffer = C\-k
+# search = C\-o
+# yank_from_buffer = C\-y
+# backspace = C\-h
+# clear_word = C\-w
+# clear_line = C\-u
+# clear_screen = C\-l
+# show_source = F2
+# exit = C\-d
+# external_editor = F7
+# edit_config = F3
+# reverse_incremental_search = M\-r
+# incremental_search = M\-s
+
+[curtsies]
+
+# Allow the the completion and docstring box above the current line
+# (default: False)
+# list_above = False
+
+# Enables two fish (the shell) style features:
+# Previous line key will search for the current line (like reverse incremental
+# search) and right arrow will complete the current line with the first match
+# from history. (default: True)
+# right_arrow_completion = True
+
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SH AUTHOR
+.sp
+\fBbpython\fP was written by Robert Anthony Farrell
+<\fI\%robertanthonyfarrel@gmail.com\fP> and his bunch of loyal followers.
+.sp
+This manual page was written by Jørgen Pedersen Tjernø <\fI\%jorgen@devsoft.no\fP>,
+for the Debian project (but may be used by others).
+.SH COPYRIGHT
+2008-2023 Bob Farrell, Andreas Stuehrk, Sebastian Ramacher, Thomas Ballinger, et al.
+.\" Generated by docutils manpage writer.
+.

@@ -1,15 +1,53 @@
-Source: template-repository
-Section: unknown
+Source: bpython
+Section: python
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: RyanBq <ryanbqzhao@gmail.com>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ python3-all,
+ python3-babel,
+ python3-curtsies (>= 0.4),
+ python3-cwcwidth,
+ python3-greenlet,
+ python3-pygments,
+ python3-requests,
+ python3-setuptools,
+ python3-sphinx,
+ python3-typing-extensions,
+ python3-xdg,
+Standards-Version: 4.6.2
+Homepage: https://bpython-interpreter.org/
+Vcs-Browser: https://salsa.debian.org/sramacher/bpython
+Vcs-Git: https://salsa.debian.org/sramacher/bpython.git
+Rules-Requires-Root: no
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: bpython
+Architecture: all
+Depends:
+ less,
+ python3-pkg-resources,
+ ${misc:Depends},
+ ${python3:Depends}
+Recommends:
+ python3-jedi,
+ python3-pyperclip,
+ python3-watchdog,
+Description: fancy interface to the Python 3 interpreter
+ bpython is a fancy interface to the Python interpreter, and has the
+ following features:
+ .
+   * In-line syntax highlighting.
+   * Readline-like autocomplete with suggestions displayed as you type
+   * Expected parameter list for any Python function. Uses pydoc to attempt to
+     divine params for C functions.
+   * "Rewind" function to pop the last line of code from memory and re-evaluate.
+     Note: this is only really useful when laying out classes and functions,
+     since a true "undo" function is impossible, so be careful when using this.
+   * Send the code you've entered off to a pastebin and display the pastebin URL
+     for copying, etc.
+   * Save the code you've entered to a file.
+   * Auto-indentation.
+   * Anti-Crash Mode.
+ .
+ This package contains bpython for Python 3.
