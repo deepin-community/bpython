@@ -1,5 +1,489 @@
-template-repository (1.0-1) unstable; urgency=medium
+bpython (0.24-2) unstable; urgency=medium
 
-  * Initial release
+  * first release in deepinOS
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- RyanBq <ryanbqzhao@gmail.com>  Mon, 03 Jul 2023 14:57:17 +0800
+bpython (0.24-1) unstable; urgency=medium
+
+  * New upstream version 0.24
+    - Add support for Python 3.11 (Closes: #1028443)
+  * debian/control: Bump Standards-Version
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 18 Jan 2023 19:07:55 +0100
+
+bpython (0.23-1) unstable; urgency=medium
+
+  * New upstream version 0.23
+  * debian/patches: Remove upstream patches
+  * debian/control:
+    - Bump Standards-Version
+    - Bump python3-curtsies to (>= 0.4)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 30 Aug 2022 21:43:11 +0200
+
+bpython (0.22.1-2) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository, Repository-Browse.
+
+  [ Sebastian Ramacher ]
+  * debian/tests: Apply upstream fixes to test with Python 3.10.1+
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 03 Apr 2022 14:18:35 +0200
+
+bpython (0.22.1-1) unstable; urgency=medium
+
+  * New upstream version 0.22.1
+  * debian/control: Add python3-typing-extensions to BD
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 08 Nov 2021 13:34:27 +0100
+
+bpython (0.22-1) unstable; urgency=medium
+
+  * New upstream version 0.22
+  * debian/control:
+    - Bump Standards-Version
+    - Recommend python3-pyperclip
+    - Remove obsolete Breaks+Replaces
+    - Remove transitional bpython3 package
+  * debian/copyright:
+    - Update copyright years
+    - Update Files pattern
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 07 Nov 2021 20:49:59 +0100
+
+bpython (0.21-3) unstable; urgency=medium
+
+  * debian/: Revert "Revert to wcwidth until cwcwidth is available"
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 04 Feb 2021 00:43:27 +0100
+
+bpython (0.21-2) unstable; urgency=medium
+
+  * debian/tests: Add autopkgtests
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 02 Feb 2021 10:11:20 +0100
+
+bpython (0.21-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control:
+    - Bump Standards-Version
+    - Add python3-pydg to Build-Depends
+    - Remove python3-six
+    - Promote python3-jedi to Recommends
+  * debian/patches: Revert to wcwidth until cwcwidth is available
+  * debian/bpython.examples: Do not install themes currently not included in
+    the upstream tarball
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 27 Jan 2021 23:27:19 +0100
+
+bpython (0.20.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 13 Nov 2020 23:03:57 +0100
+
+bpython (0.20-1) unstable; urgency=medium
+
+  * New upstream version 0.20
+  * debian/control:
+    - Update dependencies
+    - Bump debhelper compat to 13
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 13 Oct 2020 20:21:27 +0200
+
+bpython (0.19-1) unstable; urgency=medium
+
+  * New upstream release
+  * debian/control: Bump Standards-Version
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 30 Mar 2020 10:17:49 +0200
+
+bpython (0.18-3) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Use secure URI in Homepage field.
+  * Update standards version to 4.4.1, no changes needed.
+
+  [ Sebastian Ramacher ]
+  * debian/: Drop support for Python 2 and rename bpython3 to bpython (Closes:
+    #936235)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 04 Jan 2020 18:59:55 +0100
+
+bpython (0.18-2) unstable; urgency=medium
+
+  * Upload to unstable.
+  * debian/control: Set RRR: no.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 06 Jul 2019 15:15:10 +0200
+
+bpython (0.18-1) experimental; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Depend on less. (Closes: #902535)
+    - Remove ancient Python-Version fields.
+    - Bump Standards-Version.
+  * debian/:
+    - Bump debhelper compat to 12.
+    - Fix paths of .desktop files.
+    - Install appdata info.
+    - Remove obsolete maintainer scripts.
+  * debian/copyright: Document appdata license.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 05 Apr 2019 16:53:29 +0200
+
+bpython (0.17.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Move to salsa.debian.org.
+    - Bump Standards-Version.
+  * debian/copyright: Update copyright years.
+  * debian/: Bump debhelper compat to 11.
+  * debian/watch: Use https.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 13 Feb 2018 22:34:04 +0100
+
+bpython (0.17-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control: Bump Standards-Version.
+  * debian/{compat,control}: Bump dh compat.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 19 Jul 2017 20:19:27 +0200
+
+bpython (0.16-2) unstable; urgency=medium
+
+  * Brown paper bag release including changes from 0.15-2.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 10 Oct 2016 22:30:38 +0200
+
+bpython (0.16-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    - Move myself to Maintainers. Thanks for maintaining bpython, David!
+    - Bump Standards-Version.
+    - Bump X-Python-Version.
+    - Drop dh-buildinfo.
+    - Update Vcs-*.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 10 Oct 2016 22:17:37 +0200
+
+bpython (0.15-2) unstable; urgency=medium
+
+  * debian/rules: Force UTF-8 locale. (Closes: #812653)
+  * debian/control:
+     - Bump Standards-Version.
+     - Update Vcs-*.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 04 Feb 2016 21:26:54 +0100
+
+bpython (0.15-1) unstable; urgency=medium
+
+  * Upload to unstable.
+  * New upstream release.
+  * debian/control:
+    - Drop python(3)-curtsies upper bound from Depends. 0.2 is now supported.
+    - Add myself to Uploaders.
+    - Bump X-Python3-Version to Python 3.3.
+    - Add python(3)-requests to Build-Depends.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 18 Jan 2016 23:14:38 +0100
+
+bpython (0.14.1-0.1) experimental; urgency=medium
+
+  * Non-maintainer upload.
+
+  [ Julian Taylor ]
+  * tell dh_python{2,3} which packages to work on
+    as the packages are not prefixed with python- the tools can't distinguish
+    (Closes: #739620)
+
+  [ Sebastian Ramacher ]
+  * New upstream release.
+    - Pass exit status back to shell. (Closes: #689431)
+  * Update copyright information.
+  * No longer build -gtk and -urwid packages.
+  * Update Python requirements
+  * Bump Standards-Version
+  * Update Build-Depends, Depends, Recommends and Suggests.
+  * Use pybuild build system.
+  * Bump compat.
+  * Update sample-config location.
+  * Remove lintian overrides.
+  * Install more binaries.
+  * Install manpage symlinks.
+  * Install pixmaps and desktop files.
+  * Update Descriptions.
+  * Install examples for bpython3.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 20 Apr 2015 22:17:05 +0200
+
+bpython (0.12-1.2) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * No change rebuild to drop python3.3 depends (Closes: #751641)
+
+ -- Scott Kitterman <scott@kitterman.com>  Thu, 19 Jun 2014 22:49:44 -0400
+
+bpython (0.12-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Adds python3-all as build-depends to avoid FTBFS. (Closes: #741823).
+  * Added a debian/gbp.conf to use pristine-tar.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 10 Apr 2014 10:56:00 +0000
+
+bpython (0.12-1) unstable; urgency=low
+
+  * Acknowledge NMU.
+  * New upstream version (Closes: #697053).
+  * Suggest python-twisted for bpython-urwid (Closes: #681765)
+  * Standards-Version bump to 3.9.5, no changes needed.
+  * Use canonical urls for Vcs-* fields.
+  * Update debian/ to correctly compile the new version:
+    - Build-Depend on python-babel to allow translations building
+      (Closes: #700187).
+    - Build-Depend on python-sphinx to build the manpages.
+
+ -- David Paleino <dapal@debian.org>  Sun, 03 Nov 2013 13:23:28 +0100
+
+bpython (0.11-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Build using just the default python3 version to fix FTBFS when there is
+    more than one (Closes: #707309)
+
+ -- Scott Kitterman <scott@kitterman.com>  Sun, 04 Aug 2013 17:18:19 -0400
+
+bpython (0.11-1) unstable; urgency=low
+
+  * New upstream version
+  * Add windows.theme to installed example themes
+  * Updated debian/copyright
+  * debian/patches/03-support_new_urwid.patch removed, merged upstream
+
+ -- David Paleino <dapal@debian.org>  Sat, 07 Apr 2012 19:31:00 +0200
+
+bpython (0.10.1-3) unstable; urgency=low
+
+  * Apply patch from upstream to handle newer urwid (Closes: #645658)
+  * Add dh-buildinfo
+
+ -- David Paleino <dapal@debian.org>  Mon, 17 Oct 2011 19:08:01 +0200
+
+bpython (0.10.1-2) unstable; urgency=low
+
+  * Huge BUG in the conversion from dh_pysupport to dh_python2:
+    in 0.9.7.1-1's (pysupport) postrm, I inconditionally removed
+    /usr/lib/python*/*-packages/bpython (which was wrong), and
+    this removed also files shipped by 0.10.1-1, thus causing an
+    ImportError fixable only by re-installation.
+    Added preinst nuking old postrms, so that upgrades are clean
+    (Closes: #640969)
+
+ -- David Paleino <dapal@debian.org>  Fri, 09 Sep 2011 13:13:51 +0200
+
+bpython (0.10.1-1) unstable; urgency=low
+
+  [ David Paleino ]
+  * New upstream version
+  * Patches refreshed, 03-fix_manpage.patch removed (merged upstream)
+  * Standards-Version bump to 3.9.3, no changes needed
+
+  [ Tanguy Ortolo ]
+  * Include sample.theme in installed examples
+  * Use "$@" in wrapper scripts for correct argument passing
+  * Switch debian/rules in debian/control to dh_python2
+  * debian/postrm: deleted as useless and harmful
+  * Adapt packaging to support python3 (Closes: #572776)
+
+ -- David Paleino <dapal@debian.org>  Wed, 07 Sep 2011 09:18:27 +0200
+
+bpython (0.9.7.1-1) unstable; urgency=low
+
+  * New upstream release (Closes: #590551)
+  * debian/patches/:
+    - 01-fix_logo_path.patch refreshed
+    - 03-fix_manpage.patch added, fixes typo (Closes: #583191)
+  * debian/copyright updated
+  * debian/source/format: use 3.0 (quilt)
+  * debian/control:
+    - added bpython-urwid binary package
+    - Standards-Version bumped to 3.9.1, no changes needed
+  * debian/scripts/bpython-urwid, debian/scripts/bpython-urwid.py added,
+    wrapper scripts to provide a separate urwid package
+  * debian/bpython-urwid.install, debian/bpython-urwid.links added,
+    install the correct files in the new package
+  * debian/bpython-urwid.lintian-overrides added, make lintian happy
+    also with the new package
+  * debian/rules:
+    - remove "--with quilt"
+    - remove "logo.png" from pyshared directory (use mv instead of cp)
+    - remove "urwid.py*" from bpython binary package
+    - rename urwid.py to urwid_.py in the bpython-urwid package
+
+ -- David Paleino <dapal@debian.org>  Mon, 02 Aug 2010 23:08:12 +0200
+
+bpython (0.9.6.2-2) unstable; urgency=low
+
+  * Reduce delta with Ubuntu, and prepare for near-future Debian:
+    support Python >= 2.5:
+    - debian/control: bump XS-Python-Version
+    - debian/postinst, debian/postrm: remove python*/*-packages/bpython,
+      to catch both python2.5/site-packages and python2.6/dist-packages.
+
+ -- David Paleino <dapal@debian.org>  Sat, 16 Jan 2010 17:53:57 +0100
+
+bpython (0.9.6.2-1) unstable; urgency=low
+
+  * Upstream broke things with 0.9.6, new release
+
+ -- David Paleino <dapal@debian.org>  Thu, 31 Dec 2009 11:21:13 +0100
+
+bpython (0.9.6-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/patches/:
+    - 01-fix_logo_path.patch added, make bpython-gtk look for the
+      icon in the right place
+    - 02-fix_entrypoints_imports.patch added, make sure everything is
+      in place to move gtk_.py out of PYTHONPATH
+    - 01-add_write_to_FakeStdin.patch, 02-add_flush_to_FakeStdin.patch
+      removed, merged upstream
+  * debian/control:
+    - package split in "bpython" and "bpython-gtk"
+    - build-dependency on debhelper bumped
+  * debian/rules:
+    - rewritten with implicit dh7 targets
+  * debian/scripts/bpython-gtk added, wrapper around bpython-gtk.py
+
+ -- David Paleino <dapal@debian.org>  Wed, 30 Dec 2009 16:14:21 +0100
+
+bpython (0.9.5.2-3) unstable; urgency=low
+
+  * debian/postinst: only do something if an "old-version" is
+    passed to the script (Closes: #560229)
+
+ -- David Paleino <dapal@debian.org>  Fri, 11 Dec 2009 18:19:39 +0100
+
+bpython (0.9.5.2-2) unstable; urgency=low
+
+  * debian/control:
+    - updated my email address
+    - DMUA removed
+    - add quilt Build-Dependency
+    - add python-support Build-Dependency
+  * debian/patches/:
+    - 01-add_write_to_FakeStdin.patch added (Closes: #558054)
+    - 02-add_flush_to_FakeStdin.patch added
+  * debian/rules, add --with quilt
+  * debian/postinst, debian/postrm added, correctly handle removal of
+    .pyc files after the move to /usr/share/pyshared
+
+ -- David Paleino <dapal@debian.org>  Sun, 29 Nov 2009 00:51:56 +0100
+
+bpython (0.9.5.2-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- David Paleino <d.paleino@gmail.com>  Fri, 09 Oct 2009 14:39:52 +0200
+
+bpython (0.9.5.1-1) unstable; urgency=low
+
+  * New upstream version
+  * Removed quilt patchsystem (no more patches here)
+  * debian/patches/01-fix_python_history_file.patch removed, merged
+    upstream
+
+ -- David Paleino <d.paleino@gmail.com>  Wed, 23 Sep 2009 11:36:13 +0200
+
+bpython (0.9.4-1) unstable; urgency=low
+
+  * New upstream version
+  * debian/rules, debian/control:
+    - adding quilt infrastructure (>= 0.46-7~ for dh7 integration)
+  * debian/patches/:
+    - 01-fix_python_history_file.patch added, thanks to Philipp Winter
+      (Closes: #537504)
+  * debian/control:
+    - only support python2.5 at the moment (setuptools import fails on
+      py2.6, thus FTBFS)
+    - Standards-Version bump to 3.8.3, no changes needed
+  * debian/examples updated, sample file has been renamed
+  * debian/README.source added
+
+ -- David Paleino <d.paleino@gmail.com>  Thu, 03 Sep 2009 13:12:23 +0200
+
+bpython (0.9.3-1) unstable; urgency=low
+
+  * New upstream version
+  * debian/watch updated
+  * debian/control:
+    - python-pyparsing is no more needed, removed from dependencies
+    - new Homepage, field updated
+
+ -- David Paleino <d.paleino@gmail.com>  Thu, 11 Jun 2009 22:18:33 +0200
+
+bpython (0.9.2-1) unstable; urgency=low
+
+  * New upstream version
+
+ -- David Paleino <d.paleino@gmail.com>  Fri, 05 Jun 2009 21:15:59 +0200
+
+bpython (0.9.1-1) unstable; urgency=low
+
+  * New upstream version (Closes: #531598)
+  * debian/copyright updated
+  * debian/examples updated
+
+ -- David Paleino <d.paleino@gmail.com>  Tue, 02 Jun 2009 21:35:37 +0200
+
+bpython (0.8.0-1) unstable; urgency=low
+
+  * New upstream version
+  * debian/control:
+    - fixed Section to "python"
+
+ -- David Paleino <d.paleino@gmail.com>  Sat, 23 May 2009 14:41:07 +0200
+
+bpython (0.7.1-1) unstable; urgency=low
+
+  * Initial Debian release (Closes: #526740)
+
+ -- David Paleino <d.paleino@gmail.com>  Sun, 03 May 2009 12:55:56 +0200
+
+bpython (0.7.0-1~ppa1) hardy; urgency=low
+
+  * Pushed man-pages and desktop-file upstream.
+  * New upstream release.
+
+ -- Jørgen Pedersen Tjernø <jorgen@devsoft.no>  Mon, 25 Aug 2008 21:19:57 +0200
+
+bpython (0.6.3-1~ppa3) hardy; urgency=low
+
+  * Bump, fixed some packaging issues.
+
+ -- Jørgen Pedersen Tjernø <jorgen@devsoft.no>  Thu, 14 Aug 2008 00:32:25 +0200
+
+
+bpython (0.6.3-1~ppa2) hardy; urgency=low
+
+  * Fixed so installation of .desktop-file is performed.
+  * Fixed bugs in bpython.desktop.
+  * Cleaned up the control file / description.
+  * Wrote a man-page for config and binary.
+  * Made it install a sample rc-file.
+
+ -- Jørgen Pedersen Tjernø <jorgen@devsoft.no>  Wed, 13 Aug 2008 23:37:25 +0200
+
+
+bpython (0.6.3-1~ppa1) hardy; urgency=low
+
+  * Initial release.
+
+ -- Jørgen Pedersen Tjernø <jorgen@devsoft.no>  Wed, 13 Aug 2008 16:12:36 +0200

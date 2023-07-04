@@ -1,3 +1,20 @@
+Metadata-Version: 2.1
+Name: bpython
+Version: 0.24
+Home-page: https://www.bpython-interpreter.org/
+Author: Bob Farrell, Andreas Stuehrk, Sebastian Ramacher, Thomas Ballinger, et al.
+Author-email: bpython@googlegroups.com
+License: MIT
+Project-URL: GitHub, https://github.com/bpython/bpython
+Project-URL: Documentation, https://doc.bpython-interpreter.org
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.7
+Provides-Extra: clipboard
+Provides-Extra: jedi
+Provides-Extra: urwid
+Provides-Extra: watch
+License-File: LICENSE
+
 .. image:: https://img.shields.io/pypi/v/bpython
     :target: https://pypi.org/project/bpython
 
